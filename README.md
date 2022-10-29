@@ -387,15 +387,14 @@ Content-type: application/json
 
 ### Corpo da Requisição:
 
-```json
-
 
 ### Exemplo de Response:
 
-```
+```json
 200 Ok
 ```
 
+---
 # Documentação da API
 
 ## Tabela de Conteúdos
