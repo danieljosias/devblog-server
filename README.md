@@ -197,7 +197,40 @@ Vazio
 ]
 ```
 
-### 2.1. **Criação do Post**
+### 2. /login - Somente usuário faz login
+
+| Método | Rota   | Descrição                           | Autorizaçao | Adm |
+| ------ | ------ | ----------------------------------- | ----------- | --- |
+| POST   | /login | Faz login do usuário e gera token.  |             |     |
+
+### Possíveis Erros:
+
+| Código do Erro  | Descrição                   |
+| --------------- | --------------------------- |
+| 403 Forbidden	  | Invalid email            	|
+| 403 Forbidden   | Invalid password		|
+
+### 3. /posts
+
+O objeto Posts é definido como:
+
+| Campo       | Tipo   | Descrição                          |
+| ----------- | ------ | ---------------------------------- |
+| id          | string | Identificador único do usuário.    |
+| post        | string | Nome do usuário.                   |
+| createdAt   | Date   | Data que o usuário foi cadastrado. |
+| updatedAt   | Date   | Data que o usuário foi atualizado. |
+
+### Endpoints
+
+| Método   | Rota             | Descrição                                      | Autorizaçao | Adm |
+| -------- | ---------------  | ---------------------------------------------- | ----------- | --- |
+| GET      | /posts           | Lista todos os posts.                          |             |     |
+| POST     | /posts           | Criação de um post.                            |      X      |     |
+| PATCH    | /posts:id        | Atualização de um post.                        |      X      |     |
+| DELETE   | /posts:id        | Deleção de um posts.                           |             |     |
+
+### 3.1. **Criação do Post**
 
 ### `/posts`
 
@@ -249,14 +282,59 @@ Content-type: application/json
 | 400 bad request |  Invalid user id                   	       |
 
 
-### 2.3. **Atualizando Posts**
+### 3.2. **Listando Posts**
 
 ### `/posts`
 
 ### Exemplo de Request:
 
 ```
-POST /posts
+GET /posts
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 Ok
+```
+
+```json
+
+{
+"posts": [
+	{
+		"id": "0a255d84-28c4-4ac1-850c-7f1b33e0db3f",
+		"post": "Eu amo programação",
+		"createdAt": "2022-10-08T18:14:08.462Z",
+		"updatedAt": "2022-10-08T18:14:08.462Z",
+		"user": {
+			"id": "2413dd8c-fc5b-4b50-b8fe-537a301583b8",
+			"name": "daniel",
+			"email": "daneil@mail.com",
+			"avatar": "https://th.bing.com/th/id/OIP.FA9XXm9JlmCzHxt_41WhsgHaIR?w=177&h=198&c=7&r=0&o=5&pid=1.7",
+			"password": "$2a$10$3Hw0AGpCDWm7zG07qL3GieqUiCR65O83cSIAE7UCNqtwK1yg0EwXO",
+			"createdAt": "2022-10-08T18:13:39.046Z",
+			"updatedAt": "2022-10-08T18:13:39.046Z"
+		}
+	}
+	[
+}
+
+### 3.3. **Atualizando Posts**
+
+### `/posts`
+
+### Exemplo de Request:
+
+```
+PATCH /posts
 Content-type: application/json
 ```
 
@@ -275,8 +353,6 @@ Content-type: application/json
 ```
 
 ```json
-Vazio
-```
 
 {
 "posts": {
@@ -295,7 +371,7 @@ Vazio
 
 }
 
-### 2.3. **Deletando Posts**
+### 3.4. **Deletando Posts**
 
 ### `/posts`
 
