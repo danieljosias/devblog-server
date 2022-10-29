@@ -31,7 +31,7 @@ Diagrama ER da API definindo bem as relações entre as tabelas do banco de dado
 
 Clone o projeto em sua máquina e instale as dependências com o comando:
 
-```shell
+```
 yarn
 ```
 
@@ -53,6 +53,7 @@ yarn typeorm migration:run -d src/data-source.ts
 ## 4. Autenticação
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
+
 Para autenticar o usuário basta fazer login na rota:  - [POST - /login](#11-login-do-usuário)
 
 ---
