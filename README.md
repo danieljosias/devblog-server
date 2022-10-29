@@ -201,7 +201,7 @@ Vazio
 
 | Método | Rota   | Descrição                           | Autorizaçao | Adm |
 | ------ | ------ | ----------------------------------- | ----------- | --- |
-| POST   | /login | Faz login do usuário e gera token.  |             |     |
+| POST   | /login | Faz login do usuário e gera token.  |     X       |     |
 
 ### Possíveis Erros:
 
@@ -309,23 +309,24 @@ Vazio
 
 {
 "posts": [
-	{
-		"id": "0a255d84-28c4-4ac1-850c-7f1b33e0db3f",
-		"post": "Eu amo programação",
-		"createdAt": "2022-10-08T18:14:08.462Z",
-		"updatedAt": "2022-10-08T18:14:08.462Z",
-		"user": {
-			"id": "2413dd8c-fc5b-4b50-b8fe-537a301583b8",
-			"name": "daniel",
-			"email": "daneil@mail.com",
-			"avatar": "https://th.bing.com/th/id/OIP.FA9XXm9JlmCzHxt_41WhsgHaIR?w=177&h=198&c=7&r=0&o=5&pid=1.7",
-			"password": "$2a$10$3Hw0AGpCDWm7zG07qL3GieqUiCR65O83cSIAE7UCNqtwK1yg0EwXO",
-			"createdAt": "2022-10-08T18:13:39.046Z",
-			"updatedAt": "2022-10-08T18:13:39.046Z"
+		{
+			"id": "0a255d84-28c4-4ac1-850c-7f1b33e0db3f",
+			"post": "Eu amo programação",
+			"createdAt": "2022-10-08T18:14:08.462Z",
+			"updatedAt": "2022-10-08T18:14:08.462Z",
+			"user": {
+				"id": "2413dd8c-fc5b-4b50-b8fe-537a301583b8",
+				"name": "daniel",
+				"email": "daneil@mail.com",
+				"avatar": "https://th.bing.com/th/id/OIP.FA9XXm9JlmCzHxt_41WhsgHaIR?w=177&h=198&c=7&r=0&o=5&pid=1.7",
+				"password": "$2a$10$3Hw0AGpCDWm7zG07qL3GieqUiCR65O83cSIAE7UCNqtwK1yg0EwXO",
+				"createdAt": "2022-10-08T18:13:39.046Z",
+				"updatedAt": "2022-10-08T18:13:39.046Z"
+			}
 		}
-	}
 	[
 }
+```
 
 ### 3.3. **Atualizando Posts**
 
@@ -341,6 +342,7 @@ Content-type: application/json
 ### Corpo da Requisição:
 
 ```json
+
 {
 	"post":"atualizando o post"
 }
@@ -370,6 +372,7 @@ Content-type: application/json
 	}
 
 }
+```
 
 ### 3.4. **Deletando Posts**
 
@@ -386,16 +389,11 @@ Content-type: application/json
 
 ```json
 
-```
 
 ### Exemplo de Response:
 
 ```
 200 Ok
-```
-
-```json
-Vazio
 ```
 
 # Documentação da API
