@@ -53,9 +53,7 @@ yarn typeorm migration:run -d src/data-source.ts
 ## 4. Autenticação
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
-
-A rota de usuário precisa de autenticação.
-Para autenticar o usuário basta criar o usuário na rota:  - [POST - /login](#11-criação-do-produto)
+Para autenticar o usuário basta fazer login na rota:  - [POST - /login](#11-login-do-usuário)
 
 ---
 
@@ -165,15 +163,14 @@ OBS.: Chaves não presentes no schema serão removidas e valores vazios ou nulos
 
 ---
 
-### 1.2. **Listando Produtos**
+### 1.2. **Listando usuários**
 
-### `/products`
+### `/users`
 
 ### Exemplo de Request:
 
 ```
-GET /products
-Authorization: Bearer token
+GET /users
 Content-type: application/json
 ```
 
@@ -190,200 +187,22 @@ Vazio
 ```
 
 ```json
-[
-  {
-    "id": "801713c5-dd17-4bd0-bfbf-04ddfca11d9f",
-    "name": "Amstel",
-    "marketPrice": "3.00",
-    "stock": 12,
-    "description": "Se beber não dirija",
-    "discount": "0.10",
-    "createdAt": "2022-09-07T19:06:35.160Z",
-    "updatedAt": "2022-09-07T20:10:57.077Z",
-    "category": {
-      "id": "87066b82-b392-4fe7-a06e-dc2fa26e1415",
-      "name": "bebidas"
-    }
-  }
+"users": [
+	{
+		"id": "de356fe8-177d-46b6-b8dc-c96f99dac28c",
+		"name": "daniel",
+		"email": "daniel@mail.com",
+		"avatar": "https://avatars.githubusercontent.com/u/77212802?v=4",
+		"isActive": true,
+		"createdAt": "2022-10-04T20:17:41.107Z",
+		"updatedAt": "2022-10-04T20:17:41.107Z"
+	}
 ]
 ```
 
 ### Possíveis Erros:
 
 Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
-
----
-
-### 1.3. **Listar Produto por ID**
-
-### `/products/:id`
-
-### Exemplo de Request:
-
-```
-GET /products/:id
-Authorization: Bearer token
-Content-type: application/json
-```
-
-### Parâmetros da Requisição:
-
-| Parâmetro | Tipo   | Descrição                      |
-| --------- | ------ | ------------------------------ |
-| productId | string | Identificador único do produto |
-
-### Corpo da Requisição:
-
-```json
-Vazio
-```
-
-### Exemplo de Response:
-
-```
-200 OK
-```
-
-```json
-{
-  "id": "801713c5-dd17-4bd0-bfbf-04ddfca11d9f",
-  "name": "Amstel",
-  "marketPrice": "3.00",
-  "stock": 12,
-  "description": "Se beber não dirija",
-  "discount": "0.10",
-  "createdAt": "2022-09-07T19:06:35.160Z",
-  "updatedAt": "2022-09-07T20:10:57.077Z",
-  "category": {
-    "id": "87066b82-b392-4fe7-a06e-dc2fa26e1415",
-    "name": "bebidas"
-  }
-}
-```
-
-### Possíveis Erros:
-
-| Código do Erro | Descrição          |
-| -------------- | ------------------ |
-| 404 Not Found  | Product not found. |
-
----
-
-### 1.4. **Atualizar Produto**
-
-### `/products/:id`
-
-### Exemplo de Request:
-
-```
-PATCH /products/:id
-Authorization: Bearer token
-Content-type: application/json
-```
-
-### Parâmetros da Requisição:
-
-| Parâmetro | Tipo   | Descrição                      |
-| --------- | ------ | ------------------------------ |
-| productId | string | Identificador único do produto |
-
-### Corpo da Requisição:
-
-```json
-{
-  "marketPrice": 6
-}
-```
-
-### Schema de Validação com Yup:
-
-```javascript
-name: yup.string(),
-marketPrice: yup.number(),
-stock: yup.number(),
-description: yup.string(),
-discount: yup.number(),
-categoryId: yup.string(),
-```
-
-OBS.: Chaves não presentes no schema serão removidas.
-
-### Exemplo de Response:
-
-```
-200 Ok
-```
-
-```json
-{
-  "id": "801713c5-dd17-4bd0-bfbf-04ddfca11d9f",
-  "name": "Amstel",
-  "marketPrice": "6.00",
-  "stock": 12,
-  "description": "Se beber não dirija",
-  "discount": "0.10",
-  "createdAt": "2022-09-07T19:06:35.160Z",
-  "updatedAt": "2022-09-07T20:10:57.077Z",
-  "category": {
-    "id": "87066b82-b392-4fe7-a06e-dc2fa26e1415",
-    "name": "bebidas"
-  }
-}
-```
-
-### Possíveis Erros:
-
-| Código do Erro  | Descrição                                  |
-| --------------- | ------------------------------------------ |
-| 404 Not Found   | Product not found                          |
-| 404 Not Found   | Category not found.                        |
-| 400 Bad Request | Discount must be a number between 0 and 1. |
-
----
-
-### 1.5. **Deletar Produto por ID**
-
-### `/products/:id`
-
-### Exemplo de Request:
-
-```
-DELETE /products/:id
-Authorization: Bearer Token
-Content-type: application/json
-```
-
-### Parâmetros da Requisição:
-
-| Parâmetro | Tipo   | Descrição                      |
-| --------- | ------ | ------------------------------ |
-| productId | string | Identificador único do produto |
-
-### Corpo da Requisição:
-
-```json
-Vazio
-```
-
-### Exemplo de Response:
-
-```
-204 No Content
-```
-
-```json
-{
-  "message": "Product deleted successfully"
-}
-```
-
-### Possíveis Erros:
-
-| Código do Erro | Descrição         |
-| -------------- | ----------------- |
-| 404 Not Found  | Product not found |
-
----
 
 ### 2. /cart
 
